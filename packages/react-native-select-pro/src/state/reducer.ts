@@ -83,20 +83,23 @@ export const reducer = <T>(state: State<T>, action: ActionType<T>): State<T> => 
     }
 };
 
-const setDefaultOption = <T>(options: OptionsType<T>, defaultOption: OptionType<T> | undefined, defaultOptions: OptionType<T>[] | undefined) => {
+const setDefaultOption = <T>(
+    options: OptionsType<T>,
+    defaultOption: OptionType<T> | undefined,
+    defaultOptions: OptionType<T>[] | undefined,
+) => {
     if (defaultOptions && defaultOptions.length > 0) {
-
         const foundIndexes: number[] = defaultOptions.map((option) => {
             const isSectionedOptions = isSectionOptionsType(options);
             return isSectionedOptions
                 ? getReducedSectionData(options).findIndex((item) => item.value === option.value)
                 : options.findIndex((item) => item.value === option.value);
-        })
+        });
 
         return {
             selectedOption: defaultOptions,
-            selectedOptionIndex: foundIndexes
-        }
+            selectedOptionIndex: foundIndexes,
+        };
     }
 
     if (isValidDefaultOption(defaultOption) && options.length > 0) {
@@ -131,7 +134,11 @@ export const createInitialState = <T>({
         throw new TypeError(ERRORS.NO_ARRAY_OPTIONS);
     }
 
-    const { selectedOption, selectedOptionIndex } = setDefaultOption(options, defaultOption, defaultOptions);
+    const { selectedOption, selectedOptionIndex } = setDefaultOption(
+        options,
+        defaultOption,
+        defaultOptions,
+    );
 
     return {
         isOpened: false,
