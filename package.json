@@ -2,6 +2,7 @@
   "name": "react-native-select-pro-default-options",
   "version": "0.0.1",
   "private": false,
+  "main": "packages/react-native-select-pro/src/index.ts",
   "workspaces": [
     "packages/*",
     "apps/*"
