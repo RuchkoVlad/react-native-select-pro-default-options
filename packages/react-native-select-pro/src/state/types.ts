@@ -69,4 +69,5 @@ export type CreateInitialStateType<T> = {
     animation: boolean | number;
 
     defaultOption: OptionType<T> | undefined;
+    defaultOptions: OptionType<T>[] | undefined;
 };
